@@ -89,7 +89,7 @@ def clap_gen(data_dir):
     assert data_dir != "", "数据集名称不能为空"
     _, _, _, _, config_path = get_path(data_dir)
     subprocess.run(
-        f"python.exe clap_gen.py " f"--config {config_path}",
+        f"python clap_gen.py " f"--config {config_path}",
         shell=True,
     )
     return "CLAP 特征文件生成完成"
@@ -146,7 +146,7 @@ if __name__ == "__main__":
                 with gr.Row():
                     batch_size = gr.Slider(
                         label="批大小（Batch size）：24 GB 显存可用 12",
-                        value=8,
+                        value=12,
                         minimum=1,
                         maximum=64,
                         step=1,
@@ -175,5 +175,5 @@ if __name__ == "__main__":
         bert_gen_btn.click(bert_gen, inputs=[data_dir], outputs=[info])
         clap_gen_btn.click(clap_gen, inputs=[data_dir], outputs=[info])
 
-    webbrowser.open("http://127.0.0.1:7860")
-    app.launch(share=False, server_port=7860)
+    webbrowser.open("http://127.0.0.1:9090")
+    app.launch(share=False, server_port=9090)
